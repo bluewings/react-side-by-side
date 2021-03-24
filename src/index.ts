@@ -1,3 +1,3 @@
-import Sample from './components/Sample';
+import SideBySide from './components/SideBySide';
 
-export { Sample };
+export { SideBySide };
