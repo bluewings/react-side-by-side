@@ -4,29 +4,17 @@ import { LocalContext } from '../SideBySide/LocalContext';
 import styles from './SideBySideItem.module.scss';
 
 interface ISideBySideItemProps {
-  /**
-   * Prop Description
-   */
-  // message?: string;
   [key: string]: any;
 
 }
 
-/**
- * Component Description
- */
 function SideBySideItem(props: ISideBySideItemProps) {
-  const { top, maxHeight, offsetTop, clientHeight, setMax } = useContext(LocalContext);
+  const { top, maxHeight, offsetTop, clientHeight, setMax,
+    totalDist,
+    dist,
+  } = useContext(LocalContext);
   const randomId = useRandomId();
-  // const ref = useRef<HTMLDivElement>(null);
-  // useLayoutEffect(() => {
 
-  //   // if (document.)
-  //   if (ref.current) {
-  //     // ref.current.
-  //   }
-
-  // }, []);
   const [ref, bounds] = useMeasure();
 
   useLayoutEffect(() => {
@@ -45,35 +33,53 @@ function SideBySideItem(props: ISideBySideItemProps) {
     }
   }, [randomId, bounds.height]);
 
+  let ty = (maxHeight - bounds.height);
 
   const style: any = useMemo(() => {
-    let ty = (maxHeight - bounds.height);
+
     if (top < offsetTop && ty > 0) {
+      // if ()
 
       if (bounds.height < clientHeight - offsetTop) {
         return {
-          position: 'sticky',
+          // background: 'orange',
+          // position: 'sticky',
           top: offsetTop,
         }
 
       }
 
+      const gap = maxHeight - bounds.height;
+      // if (offsetTop - top > maxHeight - bounds.height) {
+      const moving = gap * dist / totalDist;
+      if (dist > gap) {
+        return {
+          // background: 'lightyellow',
+          top: offsetTop,
 
-      let percent = Math.min(((top - offsetTop) * -1) / (maxHeight - (clientHeight - offsetTop)), 1);
+          // background: 'yellow',
+          // transition: 'transform 0.01s linear',
+          transform: `translateY(${moving - gap}px)`
+        }
 
-      //  * top / (maxHeight - clientHeight)
-      // if (ty ==
-
+      }
       return {
         // background: 'yellow',
-        // transition: 'transform 0.01s linear',
-        transform: `translateY(${Math.min(ty) * percent}px)`
+        top: offsetTop,
+        transform: `translateY(${moving - dist}px)`
       }
-
     }
+
+
     return {};
 
-  }, [top, bounds.height, clientHeight, maxHeight, offsetTop]);
+  }, [top, bounds.height, clientHeight, maxHeight, offsetTop,
+    // 총 이동 범위 : 전체 높이 - 클라이언트 높이 + 오프셋 탑
+    // totalDist: maxHeight - clientHeight + offsetTop,
+    totalDist,
+    dist,
+    // 현재 이동 거리
+  ]);
 
 
   return (

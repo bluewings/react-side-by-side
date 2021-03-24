@@ -22,62 +22,76 @@ export const grid = () => {
       <h1 style={{ display: 'block', fontSize: 60 }}>hi there</h1>
       <h1 style={{ display: 'block', fontSize: 60 }}>hi there</h1>
       <h1 style={{ display: 'block', fontSize: 60 }}>hi there</h1>
-      <SideBySide offsetTop={100}>
-        <div style={{ margin: '0 1rem' }}>
-          <SideBySide.Item>
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={3} />
-            <Block size={2} />
-          </SideBySide.Item>
-        </div>
-        <div style={{ margin: '0 1rem' }}>
-          <SideBySideItem>
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={1} />
-          </SideBySideItem>
-        </div>
-        <div style={{ margin: '0 1rem' }}>
-          <SideBySideItem>
-            <Block size={3} />
-            <Block size={2} />
-            <Block size={4} />
-            <Block size={1} />
-            {/* <Block size={3} />
+      <div style={{ border: '1px solid red' }}>
+        <SideBySide offsetTop={100}>
+          <div style={{ margin: '0 1rem' }}>
+            <SideBySide.Item>
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={3} />
+              <Block size={2} />
+            </SideBySide.Item>
+          </div>
+          <div style={{ margin: '0 1rem' }}>
+            <div style={{ position: 'sticky', top: 100 }}>
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={3} />
+              <Block size={2} />
+            </div>
+          </div>
+          <div style={{ margin: '0 1rem' }}>
+            <SideBySideItem>
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+            </SideBySideItem>
+          </div>
+          <div style={{ margin: '0 1rem' }}>
+            <SideBySideItem>
+              <Block size={3} />
+              <Block size={2} />
+              <Block size={4} />
+              <Block size={1} />
+              {/* <Block size={3} />
             <Block size={2} />
             <Block size={4} />
             <Block size={1} />
             <Block size={4} />
             <Block size={1} /> */}
-          </SideBySideItem>
-        </div>
-        <div style={{ margin: '0 1rem' }}>
-          <SideBySideItem>
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={3} />
-            <Block size={1} />
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={2} />
-            <Block size={5} />
-            <Block size={1} />
-            <Block size={2} />
-          </SideBySideItem>
-        </div>
-      </SideBySide>
+            </SideBySideItem>
+          </div>
+          <div style={{ margin: '0 1rem' }}>
+            <SideBySideItem>
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={3} />
+              <Block size={1} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={2} />
+              <Block size={5} />
+              <Block size={1} />
+              <Block size={2} />
+            </SideBySideItem>
+          </div>
+        </SideBySide>
+      </div>
       <h1 style={{ display: 'block', fontSize: 60 }}>hi there</h1>
       <h1 style={{ display: 'block', fontSize: 60 }}>hi there</h1>
       <h1 style={{ display: 'block', fontSize: 60 }}>hi there</h1>
@@ -104,7 +118,7 @@ function Block(props) {
   console.log('--')
   return (
     <div style={{
-      width: 300, height: props.size * 50,
+      width: 150, height: props.size * 50,
       border: '1px solid blue',
       boxSizing: 'border-box',
       display: show ? 'block' : 'none',

@@ -4,34 +4,34 @@ import styles from './SideBySide.module.scss';
 import Item from '../SideBySideItem';
 
 interface ISideBySideProps {
-  /**
-   * Prop Description
-   */
-  // message?: string;
-  // [key: string]: any;
   children?: any;
   offsetTop?: number;
 }
 
-/**
- * Component Description
- */
 function SideBySide({ offsetTop = 0, children }: ISideBySideProps) {
   const [max, setMax] = useState<any>({});
-
-  // const [ref, bounds] = useMeasure();
 
   const [top, setTop] = useState(0);
   const maxHeight = useMemo(() => {
     return Math.max(...(Object.values(max) as number[]));
   }, [max]);
+
+  const totalDist = maxHeight - document.documentElement.clientHeight + offsetTop;
+  const dist = Math.min(Math.max(offsetTop - top, 0), totalDist);
   const localContext = useMemo(() => {
+    const clientHeight = document.documentElement.clientHeight;
     return {
       top,
-      clientHeight: document.documentElement.clientHeight,
+      clientHeight,
       maxHeight,
       setMax,
-      offsetTop
+      offsetTop,
+      // 총 이동 범위 : 전체 높이 - 클라이언트 높이 + 오프셋 탑
+      // totalDist: maxHeight - clientHeight + offsetTop,
+      totalDist,
+      dist,
+      // 현재 이동 거리
+      // totalDist: maxHeight - clientHeight + offsetTop,
     };
   }, [top, maxHeight, setMax, offsetTop]);
 
@@ -53,9 +53,7 @@ function SideBySide({ offsetTop = 0, children }: ISideBySideProps) {
   }, []);
   return (
     <LocalContext.Provider value={localContext}>
-      {/* <pre>{JSON.stringify(bounds, null, 2)}</pre> */}
       <div className={styles.root} ref={ref}>
-        {/* <h1>SideBySide</h1> */}
         {children}
       </div>
     </LocalContext.Provider>
